@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Data Dosen</title>
-</head>
-
-<body>
-    <?php
-    
+<?php
+    include "layout/navbar.php";
     include "../koneksi/koneksi.php";
 
     $id = $_GET['id'];
@@ -17,13 +7,23 @@
     $data = mysqli_fetch_array($tampil);
 
     ?>
+<div class="container">
     <form action="proses.php" method="post">
-        NPP : <input type="text" readonly name="npp" value="<?php echo $data['npp'] ?>"> <br>
-        Nama Dosen : <input type="text" name="dosen" value="<?php echo $data['nmdosen'] ?>"> <br>
-
-        <input type="submit" name="edit" value="Edit">
-
+        <div class="form-group">
+            <label for="npp">NPP</label>
+            <input type="number" readonly id="npp" name="npp" placeholder="Masukkan NPP"
+                value="<?php echo $data['npp'] ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="dosen">Nama Dosen</label>
+            <input type="text" id="dosen" name="dosen" placeholder="Masukkan Nama Dosen"
+                value="<?php echo $data['nmdosen'] ?>" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="edit" value="Edit">
+        </div>
     </form>
+</div>
 </body>
 
 </html>
