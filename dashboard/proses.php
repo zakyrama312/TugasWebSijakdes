@@ -47,6 +47,8 @@ if(isset($_POST['edit'])){
 }
 
 
+
+
 // mata kuliah
 
 // tambah matakuliah
@@ -98,4 +100,65 @@ if(isset($_GET['idhapusmk'])){
     }
 }
 
+
+// data mahasiswa
+// tambah mahasiswa
+
+if(isset($_POST['simpanmhs'])){
+    $nim = $_POST['nim'];
+    $nama_mhs = $_POST['nama_mhs'];
+    $jeniskelamin = $_POST['jeniskelamin'];
+    $alamat = $_POST['alamat'];
+    $keterangan = $_POST['keterangan'];
+
+
+    $cek = mysqli_query($koneksi, "SELECT * FROM mhs WHERE nim = '$nim'");
+    if (mysqli_num_rows($cek) > 0) {
+        echo "<script>
+                alert('NIM Sudah Ada');
+                window.location.href = 'datamahasiswa.php';
+              </script>";
+    }else{
+        $simpan = mysqli_query($koneksi, "INSERT INTO mhs VALUES ('$nim','$nama_mhs','$jeniskelamin','$alamat','$keterangan')");
+        if ($simpan) {
+            echo "<script>
+                alert('Berhasil Disimpan');
+                window.location.href = 'datamahasiswa.php';
+              </script>";
+        }
+    }
+}
+
+// edit mahasiswa
+if(isset($_POST['editmhs'])){
+    $nim = $_POST['nim'];
+    $nama_mhs = $_POST['nama_mhs'];
+    $jeniskelamin = $_POST['jeniskelamin'];
+    $alamat = $_POST['alamat'];
+    $keterangan = $_POST['keterangan'];
+
+
+    $edit = mysqli_query($koneksi, "UPDATE mhs SET nama_mahasiswa = '$nama_mhs', jenis_kelamin = '$jeniskelamin', alamat = '$alamat', ket = '$keterangan' ");
+    if ($edit) {
+        echo "<script>
+            alert('Berhasil Diedit');
+            window.location.href = 'datamahasiswa.php';
+            </script>";
+    }
+    
+}
+
+// hapus mahasiswa
+if(isset($_GET['idhapusmhs'])){
+     $id = $_GET['idhapusmhs'];
+
+    $hapus = mysqli_query($koneksi, "DELETE FROM mhs WHERE nim = '$id'");
+
+    if ($hapus) {
+        echo "<script>
+                alert('Berhasil Dihapus');
+                window.location.href = 'datamahasiswa.php';
+              </script>";
+    }
+}
 ?>

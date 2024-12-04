@@ -62,6 +62,7 @@ label {
 
 input[type="text"],
 select,
+textarea,
 input[type="number"],
 input[type="submit"] {
     width: 100%;
@@ -71,6 +72,11 @@ input[type="submit"] {
     border-radius: 5px;
 }
 
+textarea {
+    height: 40px; /* Samakan tinggi dengan input dan select */
+    resize: none; /* Mencegah perubahan ukuran */
+    box-sizing: border-box; /* Pastikan padding termasuk dalam ukuran elemen */
+}
 input[type="submit"] {
     background-color: #007bff;
     color: white;
